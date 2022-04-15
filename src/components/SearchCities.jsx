@@ -6,18 +6,19 @@ import Autocomplete from '@mui/material/Autocomplete';
 const SearchCities = ({ cities, onCityChange }) => {
 
 	return (
-		<form>
+		<div className='input-container'>
 			<Autocomplete
 				id='city-select'
 				sx={{ width: 300 }}
 				options={cities}
 				onChange={(event, newValue) => {
-					onCityChange(newValue.name)
+					if (newValue)
+						onCityChange(newValue)
 				}}
 				autoHighlight
 				getOptionLabel={(option) => option}
 				renderOption={(props, option) => (
-					<Box style={{ color: 'rgb(8, 8, 39)' }} component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+					<Box style={{ color: 'rgb(8, 8, 39)' }} component="li" {...props}>
 						{option}
 					</Box>
 				)}
@@ -31,7 +32,7 @@ const SearchCities = ({ cities, onCityChange }) => {
 					/>
 				)}
 			/>
-		</form>
+		</div>
 
 	);
 }
