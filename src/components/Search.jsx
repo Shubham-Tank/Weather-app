@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import urls from '../apiUrls'
 import SearchContries from './SearchContries'
+import SearchCities from './SearchCities'
 
 const Search = () => {
 
@@ -16,14 +17,26 @@ const Search = () => {
         setAllCountries(response.data.data)
     }
 
+    const fetchCities = async (country) => {
+        const response = await axios.post(urls.cities, {
+            "country": country.toLowerCase()
+        })
+        setCityList(response.data.data)
+    }
+
     useEffect(() => {
         fetchCountries()
     }, [])
 
+    useEffect(() => {
+        if (country)
+            fetchCities(country)
+    }, [country])
 
     return (
         <section className='search'>
-            <SearchContries onCountryChange={(value) => setCountry(value)} countries={allCountries} />
+            <SearchContries countries={allCountries} onCountryChange={(value) => setCountry(value)} />
+            <SearchCities cities={cityList} onCityChange={(value) => setCity(value)} />
         </section>
     )
 }

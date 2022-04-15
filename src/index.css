@@ -21,9 +21,13 @@ body {
 	border-radius: 0.7rem;
 }
 
-#country-select {
+#country-select,
+#city-select {
 	color: white;
-	width: 2rem;
+}
+
+form {
+	margin: 2rem auto;
 }
 
 .MuiAutocomplete-root {

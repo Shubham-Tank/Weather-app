@@ -6,7 +6,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 const SearchCountries = ({ countries, onCountryChange }) => {
 
     return (
-        <div>
+        <form>
             <Autocomplete
                 id='country-select'
                 sx={{ width: 300 }}
@@ -26,13 +26,12 @@ const SearchCountries = ({ countries, onCountryChange }) => {
                         {...params}
                         label="Choose a country"
                         inputProps={{
-                            ...params.inputProps,
-                            autoComplete: 'new-password', // disable autocomplete and autofill
+                            ...params.inputProps
                         }}
                     />
                 )}
             />
-        </div>
+        </form>
     );
 }
 

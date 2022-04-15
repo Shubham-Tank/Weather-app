@@ -1,31 +1,39 @@
 import React from 'react'
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 
-const SearchCities = ({ cityList, city, onCityChange }) => {
-
-	const [focus, setFocus] = useState(false)
+const SearchCities = ({ cities, onCityChange }) => {
 
 	return (
-		<div className='city'>
-			<input onFocus={() => setFocus(true)} type="text" value={city} onChange={(e) => onCountryChange(e.target.value)} className="form-control input-city" placeholder="Country" aria-label="Country" aria-describedby="basic-addon1" />
+		<form>
+			<Autocomplete
+				id='city-select'
+				sx={{ width: 300 }}
+				options={cities}
+				onChange={(event, newValue) => {
+					onCityChange(newValue.name)
+				}}
+				autoHighlight
+				getOptionLabel={(option) => option}
+				renderOption={(props, option) => (
+					<Box style={{ color: 'rgb(8, 8, 39)' }} component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+						{option}
+					</Box>
+				)}
+				renderInput={(params) => (
+					<TextField
+						{...params}
+						label="Choose a city"
+						inputProps={{
+							...params.inputProps
+						}}
+					/>
+				)}
+			/>
+		</form>
 
-			{focus &&
-				<select value={country} readOnly={true}
-					onClick={(e) => {
-						onCountryChange(e.target.value)
-						setFocus(false)
-					}}
-					className="form-select country-list" size="3">
-					{
-						cityList
-							.filter(({ name }) => name.toLowerCase().startsWith(country.toLowerCase()))
-							.map(({ name }) => (
-								<option key={name} value={name}>{name}</option>
-							))
-					}
-				</select>
-			}
-		</div>
-	)
+	);
 }
 
 export default SearchCities
