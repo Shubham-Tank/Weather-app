@@ -21,22 +21,25 @@ body {
 	border-radius: 0.7rem;
 }
 
-.input-country {
-	margin-top: 1.5rem;
+#country-select {
+	color: white;
+	width: 2rem;
 }
 
-.country-list {
-	position: absolute;
-	width: 40%;
+.MuiAutocomplete-root {
+	margin: auto;
+	width: 90% !important;
 }
 
-.country-list option {
-	padding: .4rem;
+.MuiInputLabel-formControl {
+	color: silver !important;
 }
 
-.country-list * {
-	color: black;
+.MuiOutlinedInput-notchedOutline {
+	border-color: silver !important;
 }
+
+
 
 @media only screen and (max-width: 1100px) {
 	.App {

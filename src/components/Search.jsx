@@ -20,17 +20,10 @@ const Search = () => {
         fetchCountries()
     }, [])
 
-    const onCountryChange = (value) => {
-        setCountry(value)
-    }
 
     return (
         <section className='search'>
-            <SearchContries
-                allCountries={allCountries}
-                country={country}
-                onCountryChange={onCountryChange} />
-
+            <SearchContries onCountryChange={(value) => setCountry(value)} countries={allCountries} />
         </section>
     )
 }

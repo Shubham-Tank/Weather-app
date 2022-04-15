@@ -1,31 +1,39 @@
 import React, { useState } from 'react'
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 
-const SearchContries = ({ country, allCountries, onCountryChange }) => {
-
-    const [focus, setFocus] = useState(false)
+const SearchCountries = ({ countries, onCountryChange }) => {
 
     return (
-        <div className='country'>
-            <input onFocus={() => setFocus(true)} type="text" value={country} onChange={(e) => onCountryChange(e.target.value)} className="form-control input-country" placeholder="Country" aria-label="Country" aria-describedby="basic-addon1" />
-
-            {focus &&
-                <select value={country} readOnly={true}
-                    onClick={(e) => {
-                        onCountryChange(e.target.value)
-                        setFocus(false)
-                    }}
-                    className="form-select country-list" size="3">
-                    {
-                        allCountries
-                            .filter(({ name }) => name.toLowerCase().startsWith(country.toLowerCase()))
-                            .map(({ name }) => (
-                                <option key={name} value={name}>{name}</option>
-                            ))
-                    }
-                </select>
-            }
+        <div>
+            <Autocomplete
+                id='country-select'
+                sx={{ width: 300 }}
+                options={countries}
+                onChange={(event, newValue) => {
+                    onCountryChange(newValue.name)
+                }}
+                autoHighlight
+                getOptionLabel={(option) => option.name}
+                renderOption={(props, option) => (
+                    <Box style={{ color: 'rgb(8, 8, 39)' }} component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+                        {option.name}
+                    </Box>
+                )}
+                renderInput={(params) => (
+                    <TextField
+                        {...params}
+                        label="Choose a country"
+                        inputProps={{
+                            ...params.inputProps,
+                            autoComplete: 'new-password', // disable autocomplete and autofill
+                        }}
+                    />
+                )}
+            />
         </div>
-    )
+    );
 }
 
-export default SearchContries
+export default SearchCountries
