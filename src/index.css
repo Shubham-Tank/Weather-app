@@ -1,74 +1,131 @@
-@import url('https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Stylish&display=swap");
 
 :root {
-	--bg-dark: rgb(8, 8, 39);
+  --bg-dark: rgb(8, 8, 39);
 }
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	color: white;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
 }
 
 body {
-	/* background-color: rgb(216, 216, 236); */
-	background-color: rgb(240, 240, 244);
+  /* background-color: rgb(216, 216, 236); */
+  background-color: rgb(240, 240, 244);
 }
 
 .heading {
-	color: rgb(199, 204, 248);
-	font-family: 'Supermercado One', cursive;
-	font-size: 2.5rem;
-	margin: auto;
-	width: fit-content;
-	text-shadow: .2rem .2rem 0 rgb(102, 102, 141);
-	letter-spacing: .2rem;
-	word-spacing: .4rem;
-	padding-bottom: .5rem;
+  color: rgb(199, 204, 248);
+  font-family: "Supermercado One", cursive;
+  font-size: 2.5rem;
+  margin: auto;
+  width: fit-content;
+  text-shadow: 0.2rem 0.2rem 0 rgb(102, 102, 141);
+  letter-spacing: 0.2rem;
+  word-spacing: 0.4rem;
+  padding-bottom: 0.5rem;
 }
 
 .App {
-	margin: 2rem 25%;
-	height: 100%;
-	background-color: var(--bg-dark);
-	padding: 2rem;
-	border-radius: 0.7rem;
+  margin: 2rem 25%;
+  height: 100%;
+  background-color: var(--bg-dark);
+  padding: 2rem;
+  border-radius: 0.7rem;
 }
-
 
 #country-select,
 #city-select {
-	color: white;
+  color: white;
 }
 
 .input-container {
-	margin: 2rem auto;
+  margin: 2rem auto;
 }
 
 .MuiAutocomplete-root {
-	margin: auto;
-	width: 90% !important;
+  margin: auto;
+  width: 90% !important;
 }
 
 .MuiInputLabel-formControl {
-	color: silver !important;
+  color: silver !important;
 }
 
 .MuiOutlinedInput-notchedOutline {
-	border-color: silver !important;
+  border-color: silver !important;
 }
-
-
 
 @media only screen and (max-width: 1100px) {
-	.App {
-		margin: 2rem 15%;
-	}
+  .App {
+    margin: 2rem 15%;
+  }
 }
 
-@media only screen and (max-width: 800px) {
-	.App {
-		margin: 2rem 5%;
-	}
+@media only screen and (max-width: 950px) {
+  .App {
+    margin: 2rem 5%;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .weather-info {
+    display: block !important;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .temp {
+    font-size: 3rem !important;
+  }
+}
+
+.weather-container {
+  margin-top: 3rem;
+  font-family: "Stylish", sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.04rem;
+  word-spacing: 0.1rem;
+}
+
+.weather-container img {
+  float: left;
+}
+
+.weather-container .pro {
+  color: rgb(98, 181, 253);
+}
+
+.weather-container .lite,
+.weather-container .lite * {
+  color: rgb(153, 151, 151);
+}
+
+.weather {
+  display: flex;
+  align-items: center;
+}
+
+.temp {
+  font-weight: 600;
+  font-size: 4rem;
+  color: rgb(223, 193, 42);
+  white-space: nowrap;
+}
+
+.temp sup {
+  font-size: 1.7rem;
+  margin-left: -0.3rem;
+}
+
+.weather-info {
+  display: flex;
+}
+
+.weather-subinfo {
+  line-height: 2rem;
+  margin-left: 1rem;
 }
