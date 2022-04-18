@@ -99,7 +99,7 @@ const Weather = ({ lat, lon, country }) => {
           <Grid item xs={12} style={{ textAlign: "center" }}>
             <div className="weather">
               <img
-                src={` http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
+                src={` http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@4x.png`}
               />
               <h1 className="pro">{weatherData.weather[0].description}</h1>
             </div>
