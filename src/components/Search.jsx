@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import urls from '../apiUrls'
 import SearchContries from './SearchContries'
 import SearchCities from './SearchCities'
+import Weather from './Weather'
 
 const Search = () => {
 
@@ -59,6 +60,7 @@ const Search = () => {
             </header>
             <SearchContries countries={allCountries} onCountryChange={(value) => setCountry(value)} />
             <SearchCities cities={cityList} onCityChange={(value) => setCity(value)} />
+            {latLon.lat && <Weather {...latLon} />}
         </section>
     )
 }
