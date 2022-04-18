@@ -65,7 +65,7 @@ body {
 	}
 }
 
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: 980px) {
 	.App {
 		margin: 2rem 10%;
 	}
@@ -178,7 +178,8 @@ body {
 }
 
 .date-time {
-	padding-top: 2rem;
+	padding-top: 3rem;
+	padding-left: 1rem;
 }
 
 .date-time h1 {
