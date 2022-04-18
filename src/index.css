@@ -165,6 +165,7 @@ body {
 	object-fit: contain;
 	position: absolute !important;
 	width: 18rem;
+	white-space: nowrap;
 }
 
 .weather h1 {
@@ -174,4 +175,16 @@ body {
 	font-family: "Supermercado One", cursive;
 	/* text-shadow: 0 0 0.5rem rgb(83, 103, 133); */
 	text-shadow: 0.3rem 0.3rem 0rem rgb(83, 103, 133);
+}
+
+.date-time {
+	padding-top: 2rem;
+}
+
+.date-time h1 {
+	color: rgb(212, 209, 209);
+}
+
+.time {
+	white-space: nowrap;
 }
