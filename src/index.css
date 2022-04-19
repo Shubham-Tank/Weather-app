@@ -27,9 +27,11 @@ body {
 	letter-spacing: 0.2rem;
 	word-spacing: 0.4rem;
 	padding-bottom: 0.5rem;
+	text-align: center;
 }
 
 .App {
+	position: relative;
 	margin: 2rem 30%;
 	height: 100%;
 	background-color: var(--bg-dark);
@@ -96,6 +98,12 @@ body {
 	.App {
 		padding-left: 1rem !important;
 		padding-right: 1rem !important;
+	}
+	.temp {
+		font-size: 2.5rem !important;
+	}
+	.temp sup {
+		font-size: 1.3rem !important;
 	}
 }
 
@@ -178,8 +186,7 @@ body {
 }
 
 .date-time {
-	padding-top: 3rem;
-	padding-left: 2rem;
+	padding: 3rem 2rem;
 }
 
 .date-time h1 {
@@ -188,4 +195,28 @@ body {
 
 .time {
 	white-space: nowrap;
+}
+
+.loader .MuiCircularProgress-circle {
+	color: rgb(142, 175, 223);
+}
+
+.overlay {
+	z-index: 100;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0%;
+	left: 0%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 0.7rem;
+}
+
+.loader-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
 }
