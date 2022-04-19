@@ -22,13 +22,7 @@ function App() {
 	};
 
 	const fetchCities = async (country) => {
-		const response = await axios.post(
-			urls.cities,
-			{
-				country: country.toLowerCase(),
-			},
-			config
-		);
+		const response = await axios.get(urls.cities(country), config);
 		setCityList(response.data.data);
 	};
 
