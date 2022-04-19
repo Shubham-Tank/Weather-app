@@ -115,6 +115,7 @@ const Weather = ({ lat, lon, country }) => {
 							justifyContent: "space-around",
 							alighItems: "center",
 							flexWrap: "wrap",
+							marginTop: "1rem",
 						}}
 					>
 						<div className="weather">
