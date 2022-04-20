@@ -1,29 +1,25 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-import urls from "../apiUrls";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { BsThermometerHalf, BsWind, BsSpeedometer } from "react-icons/bs";
 import { WiHumidity } from "react-icons/wi";
 import Tooltip from "@mui/material/Tooltip";
 import CircularProgress from "@mui/material/CircularProgress";
+import { fetchWeather } from "../api";
 
 const Weather = ({ lat, lon, country, loadingWeather, setLoadingWeather }) => {
 	const [weatherData, setWeatherData] = useState(null);
 
-	const fetchWeather = async () => {
-		const response = await axios.get(urls.weather(lat, lon));
-		console.log("fetch", loadingWeather);
-		if (JSON.stringify(weatherData) !== JSON.stringify(response.data))
-			setWeatherData(response.data);
-		setLoadingWeather(false);
-	};
-
 	useEffect(() => {
-		if (loadingWeather) fetchWeather();
+		(async () => {
+			if (loadingWeather) {
+				const weatherResponse = await fetchWeather(lat, lon);
+				if (JSON.stringify(weatherData) !== JSON.stringify(weatherResponse))
+					setWeatherData(weatherResponse);
+				setLoadingWeather(false);
+			}
+		})();
 	});
-
-	console.log("render weather");
 
 	const date = new Date();
 
@@ -122,7 +118,7 @@ const Weather = ({ lat, lon, country, loadingWeather, setLoadingWeather }) => {
 				>
 					<div className="weather">
 						<img
-							src={` http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@4x.png`}
+							src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@4x.png`}
 						/>
 						<h1 className="pro">{weatherData.weather[0].description}</h1>
 					</div>

@@ -4,7 +4,7 @@ import Weather from "./components/Weather";
 import CircularProgress from "@mui/material/CircularProgress";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import urls from "./apiUrls";
+import { fetchCountries, fetchCities, fetchLatLon } from "./api";
 
 function App() {
 	const [country, setCountry] = useState("");
@@ -20,48 +20,39 @@ function App() {
 	let source = axios.CancelToken.source();
 	let config = { cancelToken: source.token };
 
-	const fetchCountries = async () => {
-		const response = await axios.get(urls.countries);
-		setLoading(false);
-		setAllCountries(response.data.data);
-	};
-
-	const fetchCities = async (country) => {
-		const response = await axios.get(urls.cities(country), config);
-		setCityList(response.data.data);
-		setLoading(false);
-	};
-
-	const fetchLatLon = async (city) => {
-		const response = await axios.get(urls.latLon(city));
-		const { lat, lon } = response.data[0];
-		setLatLon({ lat, lon });
-	};
-
 	useEffect(() => {
-		fetchCountries();
+		(async () => {
+			const countries = await fetchCountries();
+			setLoading(false);
+			setAllCountries(countries);
+		})();
 	}, []);
 
 	useEffect(() => {
-		if (country) {
-			fetchCities(country);
-			setLoading(true);
-		}
-		setLatLon({ lat: null, lon: null });
-
+		(async () => {
+			if (country) {
+				setLoading(true);
+				const cities = await fetchCities(country, config);
+				setCityList(cities);
+				setLoading(false);
+			}
+			setLatLon({ lat: null, lon: null });
+		})();
+		setCity("");
 		return () => {
 			source.cancel();
 		};
 	}, [country]);
 
 	useEffect(() => {
-		if (city) {
-			fetchLatLon(city);
-			setLoadingWeather(true);
-		}
+		(async () => {
+			if (city) {
+				setLoadingWeather(true);
+				const latlon = await fetchLatLon(city);
+				setLatLon(latlon);
+			}
+		})();
 	}, [city]);
-
-	console.log(loadingWeather);
 
 	return (
 		<div className="App">
@@ -72,15 +63,21 @@ function App() {
 				countries={allCountries}
 				onCountryChange={(value) => setCountry(value)}
 			/>
-			<SearchCities
-				cities={cityList}
-				onCityChange={(value) => setCity(value)}
-			/>
+
+			{country && (
+				<SearchCities
+					city={city}
+					cities={cityList}
+					onCityChange={(value) => setCity(value)}
+				/>
+			)}
+
 			{loading && (
 				<div className="overlay">
 					<CircularProgress className="loader" size="4rem" />
 				</div>
 			)}
+
 			{latLon.lat && (
 				<Weather
 					{...latLon}

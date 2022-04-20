@@ -1,24 +1,22 @@
-import React from 'react'
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
+import React from "react";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 
-const SearchCities = ({ cities, onCityChange }) => {
-
+const SearchCities = ({ city, cities, onCityChange }) => {
 	return (
-		<div className='input-container'>
+		<div className="input-container">
 			<Autocomplete
-				id='city-select'
+				id="city-select"
 				sx={{ width: 300 }}
 				options={cities}
 				onChange={(event, newValue) => {
-					if (newValue)
-						onCityChange(newValue)
+					if (newValue) onCityChange(newValue);
 				}}
 				autoHighlight
 				getOptionLabel={(option) => option}
 				renderOption={(props, option) => (
-					<Box style={{ color: 'rgb(8, 8, 39)' }} component="li" {...props}>
+					<Box style={{ color: "rgb(8, 8, 39)" }} component="li" {...props}>
 						{option}
 					</Box>
 				)}
@@ -27,14 +25,14 @@ const SearchCities = ({ cities, onCityChange }) => {
 						{...params}
 						label="Choose a city"
 						inputProps={{
-							...params.inputProps
+							...params.inputProps,
 						}}
 					/>
 				)}
+				value={city}
 			/>
 		</div>
-
 	);
-}
+};
 
-export default SearchCities
+export default SearchCities;
