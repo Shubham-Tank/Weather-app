@@ -22,6 +22,8 @@ const Weather = ({ lat, lon, country, loadingWeather, setLoadingWeather }) => {
 	});
 
 	const date = new Date();
+	const minutes = date.getMinutes();
+	const hours = date.getHours();
 
 	const days = [
 		"Sunday",
@@ -126,9 +128,9 @@ const Weather = ({ lat, lon, country, loadingWeather, setLoadingWeather }) => {
 						<h1>
 							<span>{days[date.getDay()]} </span>
 							<span className="time">
-								{`${date.getHours() % 12}:${date
-									.toLocaleTimeString()
-									.slice(3, 5)} ${date.getHours > 12 ? "pm" : "am"}`}
+								{`${hours % 12}:${minutes < 10 ? `0${minutes}` : minutes} ${
+									hours > 12 ? "pm" : "am"
+								}`}
 							</span>
 						</h1>
 						<h2 className="lite">{date.toDateString().slice(4)}</h2>
